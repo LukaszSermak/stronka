@@ -87,14 +87,39 @@
         padding: 16px;
         color: var(--muted);
       }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+      .skip-link {
+        position: absolute;
+        left: -9999px;
+      }
+      .skip-link:focus {
+        left: 10px;
+        top: 10px;
+        z-index: 1000;
+        background: #fff;
+        color: #111827;
+        padding: 8px 10px;
+        border: 2px solid var(--brand);
+      }
     </style>
   </head>
   <body>
+    <a href="#mainContent" class="skip-link">Skip to main content</a>
     <header>
       <h1>MySQL 8.0 Documentation (Demo)</h1>
       <p>This is a fake documentation-style top section for your GitHub Pages website.</p>
     </header>
-    <main>
+    <main id="mainContent">
       <section>
         <h2>Reference Manual</h2>
         <p class="muted">Popular sections:</p>
@@ -111,8 +136,9 @@
         <p class="muted">Simple on-page demo agent interface.</p>
         <div id="agentOutput" class="agent-output">Claude Code Agent ready.</div>
         <div class="agent-controls">
+          <label for="agentInput" class="sr-only">Agent prompt</label>
           <input id="agentInput" type="text" placeholder="Ask the agent..." />
-          <button id="agentSend" type="button">Send</button>
+          <button id="agentSend" type="button" aria-label="Send message to Claude Code Agent">Send</button>
         </div>
       </section>
     </main>
